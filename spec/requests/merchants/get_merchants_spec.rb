@@ -36,7 +36,6 @@ RSpec.describe 'Merchants', type: :request do
     end
 
     it 'Returns merchant data' do
-      binding.pry
       expect(json["data"]["type"]).to eq "merchant"
       expect(json["data"]["attributes"]).to have_key "name"
       expect(json["data"]["attributes"]["name"]).to eq "Zel"
