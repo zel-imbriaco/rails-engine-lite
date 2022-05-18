@@ -9,7 +9,7 @@ RSpec.describe 'Merchants', type: :request do
     end
 
     it 'returns all merchants' do
-      expect(json.size).to eq 10
+      expect(json["data"].size).to eq 10 
     end
 
     it 'returns 200 status code' do
