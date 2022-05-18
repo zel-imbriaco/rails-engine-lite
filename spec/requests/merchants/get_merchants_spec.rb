@@ -27,7 +27,7 @@ RSpec.describe 'Merchants', type: :request do
   describe 'GET /merchants/:id' do
     before do
       FactoryBot.create_list(:merchant, 10)
-      @merchant1 = Merchant.create!(id: 1, name: "Zel")
+      @merchant1 = create(:merchant, id: 1, name: "Zel")
       get "/api/v1/merchants/1"
     end
 
