@@ -20,11 +20,9 @@ RSpec.describe 'Items', type: :request do
       expect(json["data"].first["attributes"]).to have_key "name"
       expect(json["data"].first["attributes"]).to have_key "description"
       expect(json["data"].first["attributes"]).to have_key "unit_price"
-      expect(json["data"].first["attributes"]).to have_key "number"
       expect(json["data"].last["attributes"]).to have_key "name"
       expect(json["data"].last["attributes"]).to have_key "description"
       expect(json["data"].last["attributes"]).to have_key "unit_price"
-      expect(json["data"].last["attributes"]).to have_key "number"
     end
   end
 
