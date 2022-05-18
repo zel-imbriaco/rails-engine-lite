@@ -20,10 +20,12 @@ RSpec.describe 'Items', type: :request do
       expect(json["data"].first["attributes"]).to have_key "name"
       expect(json["data"].first["attributes"]).to have_key "description"
       expect(json["data"].first["attributes"]).to have_key "unit_price"
+      expect(json["data"].first["attributes"]).to have_key "merchant_id"
       expect(json["data"].first["type"]).to eq "item"
       expect(json["data"].last["attributes"]).to have_key "name"
       expect(json["data"].last["attributes"]).to have_key "description"
       expect(json["data"].last["attributes"]).to have_key "unit_price"
+      expect(json["data"].last["attributes"]).to have_key "merchant_id"
       expect(json["data"].last["type"]).to eq "item"
     end
   end
@@ -42,6 +44,7 @@ RSpec.describe 'Items', type: :request do
       expect(json["data"]["attributes"]).to have_key "name"
       expect(json["data"]["attributes"]).to have_key "description"
       expect(json["data"]["attributes"]).to have_key "unit_price"
+      expect(json["data"]["attributes"]).to have_key "merchant_id"
       expect(json["data"]["type"]).to eq "item"
       expect(json["data"]["id"]).to eq "10"
     end
