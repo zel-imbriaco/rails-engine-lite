@@ -38,6 +38,22 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def find_all
+    if params[:name] && params[:min_price] || params[:name] && params[:max_price] || params[:name] && params[:min_price] && params[:max_price] || !params[:name] && !params[:min_price] && !params[:max_price]
+      render status: 400
+    else
+      if params[:name]
+        render json: ItemSerializer.new(Item.where("name ILIKE ?", "%#{params[:name]}%"))
+      elsif params[:min_price] && params[:max_price]
+        render json: ItemSerializer.new(Item.where("unit_price BETWEEN ? AND ?", params[:min_price], params[:max_price]))
+      elsif params[:min_price]
+        render json: ItemSerializer.new(Item.where("unit_price >= ?", params[:min_price]))
+      else
+        render json: ItemSerializer.new(Item.where("unit_price <= ?", params[:max_price]))
+      end
+    end
+  end
+
   private
     def item_params
       params.permit(:name, :description, :unit_price, :merchant_id)
