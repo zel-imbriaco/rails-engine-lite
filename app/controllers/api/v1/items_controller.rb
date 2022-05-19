@@ -12,6 +12,12 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def create
+    new_item = Item.create!(item_params)
+    render status: 201, json: ItemSerializer.new(Item.find(new_item.id))
+
+  end
+
   def merchant
     if Item.exists?(params[:id])
       render json: MerchantSerializer.new(Merchant.find(Item.find(params[:id]).merchant_id))
@@ -19,4 +25,9 @@ class Api::V1::ItemsController < ApplicationController
       render status: 404
     end
   end
+
+  private
+    def item_params
+      params.permit(:name, :description, :unit_price, :merchant_id)
+    end
 end
