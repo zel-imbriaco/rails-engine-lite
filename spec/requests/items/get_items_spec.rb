@@ -48,5 +48,40 @@ RSpec.describe 'Items', type: :request do
       expect(json["data"]["type"]).to eq "item"
       expect(json["data"]["id"]).to eq "10"
     end
+
+    it 'Returns 404 response for invalid item id' do
+      visit "/api/v1/items/100/merchant"
+      expect(response).to have_http_status 404
+    end
+  end
+
+  describe 'GET /items/:id/merchant' do
+    before do
+      @merchant1 = create(:merchant, id: 1, name: "Zel")
+      @merchant2 = create(:merchant, id: 2, name: "Mel")
+      @item1 = create(:item, id: 10, merchant_id: 1)
+      @item2 = create(:item, id: 11, merchant_id: 1)
+    end
+
+    it 'Returns 200 response for valid item id' do
+      visit "/api/v1/items/10/merchant"
+      expect(response).to have_http_status :success
+      visit "/api/v1/items/11/merchant"
+      expect(response).to have_http_status :success
+    end
+
+    it 'Returns 404 response for invalid item id' do
+      visit "/api/v1/items/100/merchant"
+      expect(response).to have_http_status 404
+    end
+
+    it "Returns the merchant associated with the item" do
+      visit "/api/v1/items/10/merchant"
+      expect(json["data"]["type"]).to eq "merchant"
+      expect(json["data"]["attributes"]["name"]).to eq "Zel"
+      visit "/api/v1/items/11/merchant"
+      expect(json["data"]["type"]).to eq "merchant"
+      expect(json["data"]["attributes"]["name"]).to eq "Mel"
+    end
   end
 end
