@@ -11,6 +11,7 @@ class Api::V1::MerchantsController < ApplicationController
       render status: 404
     end
   end
+  
 
   def items
     if Merchant.exists?(params[:id])

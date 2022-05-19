@@ -209,8 +209,8 @@
           1,
           1,
           52,
-          56,
-          56,
+          58,
+          58,
           1,
           null,
           null
@@ -220,9 +220,9 @@
         "lines": [
           1,
           1,
-          101,
-          115,
-          115,
+          103,
+          117,
+          117,
           null,
           null
         ]
@@ -247,7 +247,7 @@
         "lines": [
           1,
           1,
-          41,
+          45,
           null,
           null
         ]
@@ -351,6 +351,32 @@
         ]
       },
       "/Users/vaeliwen/turing/3module/rails-engine/spec/requests/items/post_items_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/vaeliwen/turing/3module/rails-engine/spec/requests/items/put_items_spec.rb": {
         "lines": [
           1,
           null,
@@ -507,6 +533,15 @@
           null,
           null,
           1,
+          2,
+          2,
+          2,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
           6,
           4,
           null,
@@ -516,7 +551,7 @@
           null,
           1,
           1,
-          2,
+          4,
           null,
           null
         ]
@@ -559,6 +594,7 @@
           null,
           null,
           null,
+          null,
           1,
           4,
           3,
@@ -570,6 +606,6 @@
         ]
       }
     },
-    "timestamp": 1652983254
+    "timestamp": 1652983746
   }
 }
