@@ -15,7 +15,10 @@ class Api::V1::ItemsController < ApplicationController
   def create
     new_item = Item.create!(item_params)
     render status: 201, json: ItemSerializer.new(Item.find(new_item.id))
+  end
 
+  def destroy
+    Item.destroy(params[:id])
   end
 
   def merchant
