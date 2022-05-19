@@ -39,7 +39,12 @@ RSpec.describe 'Merchants', type: :request do
       expect(json["data"]["type"]).to eq "merchant"
       expect(json["data"]["attributes"]).to have_key "name"
       expect(json["data"]["attributes"]["name"]).to eq "Zel"
-    end 
+    end
+    
+    it 'Returns 404 status on invalid merchant' do
+      get '/api/v1/merchants/8923987297'
+      expect(response).to have_http_status 404
+    end
   end
 
   describe 'GET /merchants/:id/items' do
@@ -66,6 +71,11 @@ RSpec.describe 'Merchants', type: :request do
       expect(json["data"].first["id"]).to eq "25"
       expect(json["data"].last["id"]).to eq "50"
       expect(json["data"][1]["id"]).to  eq "42"
+    end
+
+    it 'Returns 404 for invalid merchant' do
+      get '/api/v1/merchants/8923987297/items'
+      expect(response).to have_http_status 404
     end
   end
 end
