@@ -41,4 +41,31 @@ RSpec.describe 'Merchants', type: :request do
       expect(json["data"]["attributes"]["name"]).to eq "Zel"
     end 
   end
+
+  describe 'GET /merchants/:id/items' do
+    before do
+      @merchant1 = create(:merchant, id: "1", name: "Zel")
+      @merchant2 = create(:merchant, id: "2")
+      @item1 = create(:item, id: "25", merchant_id: 1)
+      @item2 = create(:item, id: "42", merchant_id: 1)
+      @item3 = create(:item, id: "77", merchant_id: 2)
+      @item4 = create(:item, id: "50", merchant_id: 1)
+
+      get "/api/v1/merchants/1/items"
+    end
+
+    it 'Returns 200 status on valid request' do
+      expect(response).to have_http_status :success
+    end
+
+    it 'Returns items for chosen merchant' do
+      expect(json["data"].count).to eq 3
+      expect(json["data"].first["type"]).to eq "item"
+      expect(json["data"].last["type"]).to eq "item"
+      expect(json["data"][1]["type"]).to eq "item"
+      expect(json["data"].first["id"]).to eq "25"
+      expect(json["data"].last["id"]).to eq "50"
+      expect(json["data"][1]["id"]).to  eq "42"
+    end
+  end
 end
