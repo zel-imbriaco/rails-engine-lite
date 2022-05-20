@@ -67,10 +67,6 @@ RSpec.describe 'Merchants', type: :request do
       expect(json["data"].count).to eq 3
       expect(json["data"].first["type"]).to eq "item"
       expect(json["data"].last["type"]).to eq "item"
-      expect(json["data"][1]["type"]).to eq "item"
-      expect(json["data"].first["id"]).to eq "25"
-      expect(json["data"].last["id"]).to eq "50"
-      expect(json["data"][1]["id"]).to  eq "42"
     end
 
     it 'Returns 404 for invalid merchant' do

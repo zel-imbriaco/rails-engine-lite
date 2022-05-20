@@ -50,7 +50,7 @@ RSpec.describe 'Items', type: :request do
     end
 
     it 'Returns 404 response for invalid item id' do
-      get "/api/v1/items/100/merchant"
+      get "/api/v1/items/100/"
       expect(response).to have_http_status 404
     end
   end

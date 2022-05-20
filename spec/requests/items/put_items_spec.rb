@@ -18,5 +18,10 @@ RSpec.describe 'Items', type: :request do
       expect(json["data"]["attributes"]["name"]).to eq "Zel's Bells"
       expect(json["data"]["attributes"]["description"]).to eq "New and Improved, Tinnitus guaranteed!!"
     end
+
+    it 'Returns 404 if the id to be updated does not exist' do
+      put "/api/v1/items/123", params: { name: "Coolest Item" }
+      expect(response).to have_http_status 404
+    end
   end
 end
